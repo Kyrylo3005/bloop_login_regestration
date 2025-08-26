@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="bloop_login_regestration.Views.EmailVerificationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:bloop_login_regestration.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="550" d:DesignWidth="875">
+    <Grid>
+        <Border Width="600" Height="300"
+        Background="#24272739"
+        CornerRadius="40"
+        BorderThickness="1"
+        BorderBrush="#33FFFFFF"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center">
+            <StackPanel Margin="40" HorizontalAlignment="Center">
+                <TextBlock Text="Лист уже в дорозі!"
+                   Foreground="White" FontFamily="Montserrat"
+                   FontWeight="Bold" FontSize="22"
+                   TextAlignment="Center" Margin="0,0,0,12"/>
+
+                <TextBlock Text="Ми надіслали тобі листа для підтвердження акаунта."
+                   Foreground="White" Opacity="0.85"
+                   FontFamily="Montserrat" FontSize="14"
+                   TextAlignment="Center" Margin="0,0,0,6"/>
+
+                <TextBlock Text="Перевір пошту (а ще краще — заглянь у “Спам”, бо життя жорстоке)."
+                   Foreground="White" Opacity="0.85"
+                   FontFamily="Montserrat" FontSize="14"
+                   TextAlignment="Center" Margin="0,0,0,6"/>
+
+                <TextBlock Text="Клікни на посилання в листі — і твій акаунт стане офіційно bloop’нутим."
+                   Foreground="White" Opacity="0.85"
+                   FontFamily="Montserrat" FontSize="14"
+                   TextAlignment="Center" Margin="0,0,0,16"/>
+
+                <!-- Блок ссылок -->
+                <StackPanel Margin="0,6,0,0" HorizontalAlignment="Center">
+                    <TextBlock FontSize="12" FontFamily="Montserrat" Foreground="LightGray" TextAlignment="Center">
+                Не отримав(-ла) листа?
+                <Run Text=" &#x0a;"/>
+                <Hyperlink Click="Resend_Click" Foreground="#00FFF0" TextDecorations="{x:Null}">
+                    Надіслати ще раз
+                    <Hyperlink.Style>
+                        <Style TargetType="Hyperlink">
+                            <Setter Property="TextDecorations" Value="{x:Null}" />
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="TextDecorations" Value="Underline"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Hyperlink.Style>
+                </Hyperlink>
+                <Run Text=" (через 30 секунд)"/>
+                    </TextBlock>
+
+                    <TextBlock FontSize="12" FontFamily="Montserrat" TextAlignment="Center" Margin="0,12,0,0">
+                <Hyperlink Click="ChangeEmail_Click" Foreground="#00FFF0" TextDecorations="{x:Null}">
+                    Змінити email
+                    <Hyperlink.Style>
+                        <Style TargetType="Hyperlink">
+                            <Setter Property="TextDecorations" Value="{x:Null}" />
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="TextDecorations" Value="Underline"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Hyperlink.Style>
+                </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock FontSize="12" FontFamily="Montserrat" TextAlignment="Center" Margin="0,12,0,0">
+                <Hyperlink Click="BackLogin_Click" Foreground="#00FFF0" TextDecorations="{x:Null}">
+                    Повернутись до входу
+                    <Hyperlink.Style>
+                        <Style TargetType="Hyperlink">
+                            <Setter Property="TextDecorations" Value="{x:Null}" />
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="TextDecorations" Value="Underline"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Hyperlink.Style>
+                </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

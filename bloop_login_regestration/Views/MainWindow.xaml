@@ -1,0 +1,159 @@
+﻿<Window x:Class="bloop_login_regestration.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:bloop_login_regestration"
+        mc:Ignorable="d"
+        Title="BloopLogin" Height="550" Width="875"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseDown="Window_MouseDown"
+        Loaded="Window_Loaded">
+    
+    
+    <Border BorderThickness="3">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#462AD8" Offset="0"/>
+                <GradientStop Color="#FF29615F" Offset="0.75"/>
+                <GradientStop Color="#FF4842AF" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+
+        <Border.Background>
+            <RadialGradientBrush Center="0.5,0.5" RadiusX="0.95" RadiusY="0.95" GradientOrigin="0.5,0.5">
+                <GradientStop Color="#FF0B364E" Offset="0"/>
+                <GradientStop Color="#FF0B0D1A" Offset="0.75"/>
+                <GradientStop Color="Black" Offset="0.9"/>
+            </RadialGradientBrush>
+        </Border.Background>
+
+        <Grid>
+            <!-- Верхняя панель с кнопками окна -->
+            <Grid Height="30" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="38"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Minimize -->
+                <Button x:Name="btnMinimase"
+                        Background="Transparent"
+                        Cursor="Hand"
+                        Grid.Column="1"
+                        Click="btnMinimase_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="#FFB1B1B1"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="14" Height="14" Background="{TemplateBinding Background}">
+                                <Viewbox Stretch="Uniform">
+                                    <Canvas Width="24" Height="8">
+                                        <Path Data="M20 12L4 12"
+                                              Stroke="{TemplateBinding Foreground}"
+                                              StrokeThickness="1.2"/>
+                                    </Canvas>
+                                </Viewbox>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <!-- Toggle size (fullscreen <-> 875x550) -->
+                <Button x:Name="btnToggleSize"
+                        Background="Transparent"
+                        Cursor="Hand"
+                        Grid.Column="2"
+                        Click="btnToggleSize_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="#FFB1B1B1"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="14" Height="14" Background="{TemplateBinding Background}">
+                                <Viewbox Stretch="Uniform">
+                                    <Canvas Width="24" Height="24">
+                                        <Path Data="M17.9745 18C19.2829 17.8713 20.1636 17.5804 20.8209 16.9231C22 15.744 22 13.8464 22 10.0511C22 6.25576 22 4.3581 20.8209 3.17905C19.6419 2 17.7442 2 13.9489 2C10.1536 2 8.25596 2 7.07691 3.17905C6.41956 3.8364 6.1287 4.71712 6 6.02554"
+                                              Stroke="{TemplateBinding Foreground}" StrokeThickness="1.5"/>
+                                        <Path Data="M10 22C6.22876 22 4.34315 22 3.17157 20.8284C2 19.6569 2 17.7712 2 14C2 10.2288 2 8.34315 3.17157 7.17157C4.34315 6 6.22876 6 10 6C13.7712 6 15.6569 6 16.8284 7.17157C18 8.34314 18 10.2288 18 14C18 17.7712 18 19.6569 16.8284 20.8284C15.6569 22 13.7712 22 10 22Z"
+                                              Stroke="{TemplateBinding Foreground}" StrokeThickness="1.5"/>
+                                    </Canvas>
+                                </Viewbox>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <!-- Close -->
+                <Button x:Name="btnClose"
+                        Background="Transparent"
+                        Cursor="Hand"
+                        Grid.Column="3"
+                        Click="btnClose_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="#FFFF4350"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="14" Height="14" Background="{TemplateBinding Background}">
+                                <Viewbox Stretch="Uniform">
+                                    <Canvas Width="24" Height="24">
+                                        <Path Data="M19.0005 5L5.00049 19M5.00049 5L19.0005 19"
+                                              Stroke="{TemplateBinding Foreground}" StrokeThickness="1.5"/>
+                                    </Canvas>
+                                </Viewbox>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+
+            <!-- ЛОГО (слева сверху) -->
+            <Viewbox Width="80" Height="50"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     Margin="30">
+                <Canvas Width="124" Height="73">
+                    <Path Fill="White" Data="M99.5423 73C98.1089 73 96.9482 71.8387 96.9482 70.4044V59.466C96.9482 52.0018 103.014 45.9321 110.474 45.9321C115.072 45.9321 118.812 42.19 118.812 37.5894C118.812 32.9887 115.072 29.2467 110.474 29.2467C105.876 29.2467 102.136 32.9887 102.136 37.5894C102.136 45.0536 96.0703 51.1233 88.6105 51.1233C81.1506 51.1233 75.0845 45.0536 75.0845 37.5894C75.0845 32.9887 71.3447 29.2467 66.7468 29.2467C62.1489 29.2467 58.409 32.9887 58.409 37.5894C58.409 45.0536 52.3429 51.1233 44.8831 51.1233C37.4233 51.1233 31.3572 45.0536 31.3572 37.5894V2.59562C31.3572 1.16133 32.5178 0 33.9513 0C35.3847 0 36.5453 1.16133 36.5453 2.59562V37.5943C36.5453 42.195 40.2852 45.937 44.8831 45.937C49.481 45.937 53.2209 42.195 53.2209 37.5943C53.2209 30.1301 59.2869 24.0604 66.7468 24.0604C74.2066 24.0604 80.2727 30.1301 80.2727 37.5943C80.2727 42.195 84.0125 45.937 88.6105 45.937C93.2084 45.937 96.9482 42.195 96.9482 37.5943C96.9482 30.1301 103.014 24.0604 110.474 24.0604C117.934 24.0604 124 30.1301 124 37.5943C124 45.0586 117.934 51.1283 110.474 51.1283C105.876 51.1283 102.136 54.8704 102.136 59.471V70.4093C102.136 71.8436 100.976 73.005 99.5423 73.005V73Z"/>
+                    <Path Fill="White" Data="M13.5259 51.1283C6.06608 51.1283 0 45.0586 0 37.5943V13.534C0 6.06969 6.06608 0 13.5259 0C20.9858 0 27.0518 6.06969 27.0518 13.534C27.0518 20.9982 20.9858 27.0679 13.5259 27.0679C12.0925 27.0679 10.9318 25.9066 10.9318 24.4723C10.9318 23.038 12.0925 21.8767 13.5259 21.8767C18.1238 21.8767 21.8637 18.1346 21.8637 13.534C21.8637 8.93331 18.1238 5.19124 13.5259 5.19124C8.928 5.19124 5.18816 8.93331 5.18816 13.534V37.5943C5.18816 42.195 8.928 45.937 13.5259 45.937C18.1238 45.937 21.8637 42.195 21.8637 37.5943V30.6412C21.8637 29.2069 23.0243 28.0456 24.4578 28.0456C25.8912 28.0456 27.0518 29.2069 27.0518 30.6412V37.5943C27.0518 45.0586 20.9858 51.1283 13.5259 51.1283Z"/>
+                </Canvas>
+            </Viewbox>
+
+            <!-- Хост для экранов -->
+            <ContentControl x:Name="MainContent"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch" />
+
+
+        </Grid>
+    </Border>
+</Window>
