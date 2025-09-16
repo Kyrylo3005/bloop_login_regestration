@@ -117,11 +117,13 @@ namespace bloop_login_regestration.ViewModel
                         // Перехід до нового вікна
                         Application.Current.Dispatcher.Invoke(() =>
                         {
-                            var home = new HomeWindow(user);
-                            home.Show();
+                            //Currently not in use, need to connect that later. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-                            Application.Current.MainWindow.Close();
-                            Application.Current.MainWindow = home;
+                            //var home = new HomeWindow(user);
+                            //home.Show();
+
+                            //Application.Current.MainWindow.Close();
+                            //Application.Current.MainWindow = home;
                         });
                     }
 

@@ -5,9 +5,371 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:bloop_login_regestration.Views"
         mc:Ignorable="d"
-        Title="Home" Height="450" Width="800">
-    <Grid>
-        <TextBlock x:Name="WelcomeText" FontSize="20" 
-                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
-    </Grid>
+        Title="Home" Width="1920" Height="1080" 
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseDown="Window_MouseDown"
+        Loaded="Window_Loaded">
+    <Window.Resources>
+        <!-- большая круглая иконка, «как у лого» -->
+        <Style x:Key="SideIconButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="56"/>
+            <Setter Property="Height" Value="56"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Ellipse Fill="{TemplateBinding Background}"/>
+
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#6DA1FF"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Foreground" Value="#1C2532"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- маленькая круглая кнопка для низа -->
+        <Style x:Key="SideIconSmallButtonStyle" TargetType="Button" BasedOn="{StaticResource SideIconButtonStyle}">
+            <Setter Property="Width" Value="44"/>
+            <Setter Property="Height" Value="44"/>
+        </Style>
+    </Window.Resources>
+
+    <Border Background="#11141D">
+
+        <Grid>
+            <!-- Верхняя панель с кнопками окна -->
+            <Grid Height="44" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Minimize -->
+                <Button x:Name="btnMinimase"
+                    Foreground="White"
+                    Cursor="Hand"
+                    Grid.Column="1"
+                    Click="btnMinimase_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#1B1E26"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="74" Height="44" Background="{TemplateBinding Background}">
+                                <Viewbox Stretch="Uniform">
+                                    <Canvas Width="44" Height="44">
+                                        <Path Data="M20 12L4 12"
+                                              Stroke="{TemplateBinding Foreground}"
+                                              StrokeThickness="1.2" Stretch="Fill" Canvas.Left="12" Canvas.Top="30"/>
+                                    </Canvas>
+                                </Viewbox>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <!-- Toggle size (fullscreen <-> 875x550) -->
+                <Button x:Name="btnToggleSize"
+                    Foreground="White"
+                    Cursor="Hand"
+                    Grid.Column="2"
+                    Click="btnToggleSize_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#1B1E26"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="74" Height="44" Background="{TemplateBinding Background}">
+                                <Viewbox Stretch="Uniform">
+                                    <Canvas Width="44" Height="44">
+                                        <Path Data="M17.9745 18C19.2829 17.8713 20.1636 17.5804 20.8209 16.9231C22 15.744 22 13.8464 22 10.0511C22 6.25576 22 4.3581 20.8209 3.17905C19.6419 2 17.7442 2 13.9489 2C10.1536 2 8.25596 2 7.07691 3.17905C6.41956 3.8364 6.1287 4.71712 6 6.02554"
+                                          Stroke="{TemplateBinding Foreground}" StrokeThickness="1.5"  Canvas.Left="10" Canvas.Top="10"/>
+                                        <Path Data="M10 22C6.22876 22 4.34315 22 3.17157 20.8284C2 19.6569 2 17.7712 2 14C2 10.2288 2 8.34315 3.17157 7.17157C4.34315 6 6.22876 6 10 6C13.7712 6 15.6569 6 16.8284 7.17157C18 8.34314 18 10.2288 18 14C18 17.7712 18 19.6569 16.8284 20.8284C15.6569 22 13.7712 22 10 22Z"
+                                          Stroke="{TemplateBinding Foreground}" StrokeThickness="1.5"  Canvas.Left="10" Canvas.Top="10"/>
+                                    </Canvas>
+                                </Viewbox>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <!-- Close -->
+                <Button x:Name="btnClose"
+                        Foreground="White"
+                        Cursor="Hand"
+                        Grid.Column="3"
+                        Click="btnClose_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FFFF4350"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="74" Height="44" Background="{TemplateBinding Background}">
+                                <Viewbox Stretch="Uniform">
+                                    <Canvas Width="44" Height="44">
+                                        <Path Data="M19.0005 5L5.00049 19M5.00049 5L19.0005 19"
+                                          Stroke="{TemplateBinding Foreground}" StrokeThickness="1.5" Stretch="Fill" Canvas.Left="13" Canvas.Top="14"/>
+                                    </Canvas>
+                                </Viewbox>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+
+            <!-- ЛОГО (слева сверху) -->
+            <Button Width="80" Height="80"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="50,44,0,0"
+                    Cursor="Hand"
+                    ToolTip="Головна Сторінка"
+                    Background="Transparent"
+                    Click="MainPage_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <!-- Outer Circle with Border -->
+                            <Border Width="80" Height="80" 
+                                    Background="Transparent" 
+                                    BorderBrush="Gray" 
+                                    BorderThickness="2" 
+                                    CornerRadius="40">
+                                <Border.Effect>
+                                    <!-- Glow effect around the circle -->
+                                    <DropShadowEffect Color="White" BlurRadius="15" ShadowDepth="0" Opacity="0"/>
+                                </Border.Effect>
+                            </Border>
+
+                            <!-- Central Dark Gradient Circle -->
+                            <Ellipse Width="76" Height="76" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5">
+                                        <GradientStop Color="#19B7B7B7" Offset="0"/>
+                                        <GradientStop Color="#3A3A3A" Offset="1"/>
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+
+                            <!-- Icon (Path) centered inside -->
+                            <Canvas Width="27" Height="52" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Path Fill="White" Stretch="Fill" Width="27" Height="52" Data="M13.5259 51.1283C6.06608 51.1283 0 45.0586 0 37.5943V13.534C0 6.06969 6.06608 0 13.5259 0C20.9858 0 27.0518 6.06969 27.0518 13.534C27.0518 20.9982 20.9858 27.0679 13.5259 27.0679C12.0925 27.0679 10.9318 25.9066 10.9318 24.4723C10.9318 23.038 12.0925 21.8767 13.5259 21.8767C18.1238 21.8767 21.8637 18.1346 21.8637 13.534C21.8637 8.93331 18.1238 5.19124 13.5259 5.19124C8.928 5.19124 5.18816 8.93331 5.18816 13.534V37.5943C5.18816 42.195 8.928 45.937 13.5259 45.937C18.1238 45.937 21.8637 42.195 21.8637 37.5943V30.6412C21.8637 29.2069 23.0243 28.0456 24.4578 28.0456C25.8912 28.0456 27.0518 29.2069 27.0518 30.6412V37.5943C27.0518 45.0586 20.9858 51.1283 13.5259 51.1283Z"/>
+                            </Canvas>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <!--Profile -->
+            <Grid HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  Width="80" Height="274"
+                  Margin="50,140,0,0" Grid.RowSpan="2">
+
+                <Border Background="#141821"
+                    CornerRadius="40"
+                    BorderBrush="#283043"
+                    BorderThickness="1"/>
+
+                <Border CornerRadius="40">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,3">
+                            <GradientStop Color="#15FFFFFF" Offset="0"/>
+                            <GradientStop Color="#00000000" Offset="0.5"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+
+                <Grid>
+                    <StackPanel Grid.Row="0" Margin="0,16,0,0">
+                        <!-- Аватар -->
+                        <Grid Width="44" Height="44" Margin="0,0,0,30">
+                            <!-- Аватарка с закруглёнными углами -->
+                            <Border CornerRadius="14"
+                                    BorderBrush="#3A3F4A"
+                                    Cursor="Hand"
+                                    BorderThickness="1"
+                                    SnapsToDevicePixels="True">
+                                <Border.Background>
+                                    <!--Знать не знаю почему оно не работает просто с "\Images\avatar.png", по этому временно использую так.-->
+                                    <ImageBrush ImageSource="C:\Users\user1\source\repos\bloop_login_regestration\bloop_login_regestration\Images\avatar.png" Stretch="UniformToFill"/>
+                                </Border.Background>
+                            </Border>
+
+                            <!-- Индикатор -->
+                            <Ellipse Width="10" Height="10"
+                                     Fill="#3399FF"
+                                     Stroke="#3A3F4A" StrokeThickness="2"
+                                     HorizontalAlignment="Right"
+                                     VerticalAlignment="Bottom"
+                                     Margin="0,0,3,3"/>
+                        </Grid>
+
+
+                        <!-- Кнопка: Друзі (активна) -->
+                        <Grid>
+                            <Button Style="{StaticResource SideIconButtonStyle}" ToolTip="Камера">
+                                <Canvas Width="22" Height="18">
+                                    <Path Data="M10 5L12 5" 
+                                          Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" 
+                                          StrokeThickness="1.5"/>
+                                    <Path Data="M1 8C1 4.70017 1 3.05025 2.02513 2.02513C3.05025 1 4.70017 1 8 1H9C12.2998 1 13.9497 1 14.9749 2.02513C16 3.05025 16 4.70017 16 8V10C16 13.2998 16 14.9497 14.9749 15.9749C13.9497 17 12.2998 17 9 17H8C4.70017 17 3.05025 17 2.02513 15.9749C1 14.9497 1 13.2998 1 10V8Z" 
+                                          Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" 
+                                          StrokeThickness="1.5"/>
+                                    <Path Data="M16 5.90585L16.1259 5.80196C18.2417 4.05623 19.2996 3.18336 20.1498 3.60482C21 4.02628 21 5.42355 21 8.21808V9.78192C21 12.5765 21 13.9737 20.1498 14.3952C19.2996 14.8166 18.2417 13.9438 16.1259 12.198L16 12.0941" 
+                                          Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" 
+                                          StrokeThickness="1.5"/>
+                                </Canvas>
+                            </Button>
+                        </Grid>
+                        <Grid>
+                            <Button Style="{StaticResource SideIconButtonStyle}" ToolTip="Друзі">
+                                <Canvas Width="18" Height="24">
+                                    <Path Data="M14 6V10C14 12.7614 11.7614 15 9 15C6.23858 15 4 12.7614 4 10V6C4 3.23858 6.23858 1 9 1C11.7614 1 14 3.23858 14 6Z" 
+                                          Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" 
+                                          StrokeThickness="1.5"/>
+                                    <Path Data="M14 6H11M14 10H11" 
+                                          Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" 
+                                          StrokeThickness="1.5"/>
+                                    <Path Data="M17 10C17 14.4183 13.4183 18 9 18M9 18C4.58172 18 1 14.4183 1 10M9 18V21M9 21H12M9 21H6" 
+                                          Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" 
+                                          StrokeThickness="1.5"/>
+                                </Canvas>
+                            </Button>
+                        </Grid>
+                        <Grid>
+                            <Button Style="{StaticResource SideIconButtonStyle}" ToolTip="Друзі">
+                                <Canvas Width="20" Height="17">
+                                    <Path Data="M16 12.3045C16 11.9588 16 11.786 16.052 11.632C16.2032 11.1844 16.6018 11.0108 17.0011 10.8289C17.45 10.6244 17.6744 10.5222 17.8968 10.5042C18.1493 10.4838 18.4022 10.5382 18.618 10.6593C18.9041 10.8198 19.1036 11.1249 19.3079 11.373C20.2513 12.5188 20.7229 13.0918 20.8955 13.7236C21.0348 14.2334 21.0348 14.7666 20.8955 15.2764C20.6438 16.1979 19.8485 16.9704 19.2598 17.6854C18.9587 18.0511 18.8081 18.234 18.618 18.3407C18.4022 18.4618 18.1493 18.5162 17.8968 18.4958C17.6744 18.4778 17.45 18.3756 17.0011 18.1711C16.6018 17.9892 16.2032 17.8156 16.052 17.368C16 17.214 16 17.0412 16 16.6955V12.3045Z" 
+                                          Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" 
+                                          StrokeThickness="1.5"/>
+                                    <Path Data="M6 12.3046C6 11.8694 5.98778 11.4782 5.63591 11.1722C5.50793 11.0609 5.33825 10.9836 4.99891 10.829C4.55001 10.6246 4.32556 10.5224 4.10316 10.5044C3.43591 10.4504 3.07692 10.9058 2.69213 11.3732C1.74875 12.519 1.27706 13.0919 1.10446 13.7237C0.965179 14.2336 0.965179 14.7668 1.10446 15.2766C1.3562 16.1981 2.15152 16.9705 2.74021 17.6856C3.11129 18.1363 3.46577 18.5475 4.10316 18.496C4.32556 18.478 4.55001 18.3757 4.99891 18.1713C5.33825 18.0167 5.50793 17.9394 5.63591 17.8281C5.98778 17.5221 6 17.131 6 16.6957V12.3046Z" 
+                                          Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" 
+                                          StrokeThickness="1.5"/>
+                                    <Path Data="M18 10.5V8.5C18 4.63401 14.866 1.5 11 1.5C7.13401 1.5 4 4.63401 4 8.5V10.5" 
+                                          Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" 
+                                          StrokeThickness="1.5"/>
+                                </Canvas>
+                            </Button>
+                        </Grid>
+                    </StackPanel>
+
+                </Grid>
+            </Grid>
+            <!-- Нижний блок слева -->
+            <Grid HorizontalAlignment="Left"
+                  VerticalAlignment="Bottom"
+                  Width="80" Height="200"
+                  Margin="50,0,0,20">
+
+                <StackPanel Orientation="Vertical"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Bottom">
+
+                    <!-- Разделительная линия -->
+                    <Border Height="1"
+                            Margin="8,0,8,16"
+                            Background="#2A2F3A"
+                            HorizontalAlignment="Stretch"
+                            Opacity="0.6"/>
+
+                    <Button Style="{StaticResource SideIconButtonStyle}" ToolTip="Оверлей">
+                        <Canvas Width="24" Height="24">
+                            <Path Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                  StrokeThickness="1.5"
+                                  Data="M2 10C2 6.22876 2 4.34315 3.17157 3.17157C4.34315 2 6.22876 2 10 2H14C17.7712 2 19.6569 2 20.8284 3.17157C22 4.34315 22 6.22876 22 10C22 13.7712 22 15.6569 20.8284 16.8284C19.6569 18 17.7712 18 14 18H10C6.22876 18 4.34315 18 3.17157 16.8284C2 15.6569 2 13.7712 2 10Z"/>
+                            <Path Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                  StrokeThickness="1.5"
+                                  Data="M16 22C14.8233 21.364 13.4571 21 12 21C10.5429 21 9.17669 21.364 8 22"/>
+                        </Canvas>
+                    </Button>
+
+                    <Button Style="{StaticResource SideIconButtonStyle}" ToolTip="Сповіщення">
+                        <Canvas Width="24" Height="24">
+                            <Path Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                  StrokeThickness="1.5"
+                                  Data="M22 5.5C22 7.433 20.433 9 18.5 9C16.567 9 15 7.433 15 5.5C15 3.567 16.567 2 18.5 2C20.433 2 22 3.567 22 5.5Z"/>
+                            <Path Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                  StrokeThickness="1.5"
+                                  Data="M21.9506 11C21.9833 11.3289 22 11.6625 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C12.3375 2 12.6711 2.01672 13 2.04938"/>
+                            <Path Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                  StrokeThickness="1.5"
+                                  Data="M8 10H12"/>
+                            <Path Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                  StrokeThickness="1.5"
+                                  Data="M8 15H16"/>
+                            <Path Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                  StrokeThickness="1.5"
+                                  Data=""/>
+                        </Canvas>
+                    </Button>
+
+                    <Button Style="{StaticResource SideIconButtonStyle}" ToolTip="Довідка">
+                        <Canvas Width="22" Height="22">
+                            <Path Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                  StrokeThickness="1.5"
+                                  Data="M11,1 A10,10 0 1 1 10.999,1 Z"/>
+                            <Path Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                  StrokeThickness="1.5"
+                                  StrokeStartLineCap="Round"
+                                  Data="M9,8 C9,6.89543 9.89543,6 11,6 C12.1046,6 13,6.89543 13,8 C13,8.39815 12.8837,8.76913 12.6831,9.08079 C12.0854,10.0097 11,10.8954 11,12 V12.5"/>
+                            <Path Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                  StrokeThickness="2"
+                                  StrokeStartLineCap="Round"
+                                  StrokeEndLineCap="Round"
+                                  Data="M10.992 16 H11.001"/>
+                        </Canvas>
+                    </Button>
+
+
+                </StackPanel>
+            </Grid>
+
+
+            <!-- Хост для экранов -->
+            <ContentControl x:Name="MainContent" Grid.RowSpan="2" />
+
+
+        </Grid>
+    </Border>
 </Window>
+    
