@@ -2,8 +2,6 @@
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,7 +10,9 @@ using bloop_login_regestration.Services;
 
 namespace bloop_login_regestration.Views
 {
-    
+    /// <summary>
+    /// Interaction logic for CreateAccountView.xaml
+    /// </summary>
     public partial class CreateAccountView : UserControl
     {
         public CreateAccountView()
@@ -20,6 +20,7 @@ namespace bloop_login_regestration.Views
             InitializeComponent();
         }
 
+        // This is the click handler name you already use in XAML: Click="btnRegister_Click"
         private async void btnRegister_Click(object sender, RoutedEventArgs e)
         {
             await RegisterUserAsync();
@@ -27,40 +28,47 @@ namespace bloop_login_regestration.Views
 
         private async Task RegisterUserAsync()
         {
-            var client = new HttpClient();
-
-            string plainPassword = new NetworkCredential(string.Empty, passwordBox.Password).Password;
-
-            var newUser = new
-            {
-                fio = txtFullName.Text,
-                email = txtGmail.Text,
-                login = txtName.Text,
-                phone = txtPhone.Text,
-                password = plainPassword,
-                isEmailConfirmed = false
-            };
-
-            var json = JsonSerializer.Serialize(newUser);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-
             try
             {
-                var response = await client.PostAsync("https://localhost:7214/Auth/RegisterUser", content);
-                response.EnsureSuccessStatusCode();
+                using var client = new HttpClient();
 
-                var user = await response.Content.ReadFromJsonAsync<User>();
-                if (user != null)
+                // passwordBox.Password is a SecureString (your custom BindablePasswordBox),
+                // convert it to plain text for sending (this is needed to POST to API).
+                // Warning: in production avoid keeping plain passwords in memory longer than necessary.
+                string plainPassword = new NetworkCredential(string.Empty, passwordBox.Password).Password;
+
+                var newUser = new
                 {
-                    UserSession.CurrentUser = user;
+                    fio = txtFullName.Text,
+                    email = txtGmail.Text,
+                    login = txtName.Text,
+                    phone = txtPhone.Text,
+                    password = plainPassword,
+                    isEmailConfirmed = false
+                };
 
-                    // Navigate to Welcome screen
-                    var parent = Window.GetWindow(this) as MainWindow;
-                    parent?.NavigateTo(new WelcomeBloopView());
+                var response = await client.PostAsJsonAsync("https://localhost:7214/Auth/RegisterUser", newUser);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var user = await response.Content.ReadFromJsonAsync<User>();
+                    if (user != null)
+                    {
+                        UserSession.CurrentUser = user;
+
+                        // Navigate to Welcome screen inside the MainWindow host
+                        var parent = Window.GetWindow(this) as MainWindow;
+                        parent?.NavigateTo(new WelcomeBloopView());
+                    }
+                    else
+                    {
+                        MessageBox.Show("Помилка: сервер не повернув користувача");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Помилка: сервер не повернув користувача");
+                    var body = await response.Content.ReadAsStringAsync();
+                    MessageBox.Show($"Registration failed: {response.StatusCode}\n{body}");
                 }
             }
             catch (Exception ex)

@@ -21,7 +21,7 @@ namespace bloop_login_regestration.Views
         }
 
 
-        
+
         private void OpenHomeWindow()
         {
             // Get the currently logged-in user from the session
@@ -30,10 +30,10 @@ namespace bloop_login_regestration.Views
             // If session is empty for any reason, create a minimal fallback user
             if (user == null)
             {
-                user = new User { Fio = "Гість", Email = string.Empty, Login = string.Empty, Phone = string.Empty };
+                user = new User { Fio = "Гість", Email = string.Empty, Login = string.Empty, Phone = string.Empty};
             }
 
-            var home = new HomeWindow(user);
+            var home = new HomeWindow();
             home.Show();
 
             // Close parent window (the window that hosts this UserControl, usually MainWindow)

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Net.Http;
-using System.Text;
-using System.Text.Json;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -34,20 +33,23 @@ namespace bloop_login_regestration.ViewModel
             {
                 using var client = new HttpClient();
 
-                var json = JsonSerializer.Serialize(new { email = Email });
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await client.PostAsync("https://localhost:7214/Auth/ForgotPassword", content);
+                // Important: server expects "Email" with capital E
+                var payload = new { Email = Email };
 
+                var response = await client.PostAsJsonAsync(
+                    "https://localhost:7214/Auth/ForgotPassword", payload);
 
                 if (response.IsSuccessStatusCode)
                 {
                     MessageBox.Show("A new password has been sent to your email.");
 
-                    // Navigate to EmailSentView
                     Application.Current.Dispatcher.Invoke(() =>
                     {
-                        var parent = Window.GetWindow(Application.Current.MainWindow.Content as FrameworkElement) as MainWindow;
-                        parent?.NavigateTo(new Views.EmailSentView());
+                        var parent = Application.Current.MainWindow as MainWindow;
+                        parent?.NavigateTo(new Views.EmailSentView
+                        {
+                            DataContext = new EmailSentViewModel(Email)
+                        });
                     });
                 }
                 else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
@@ -56,7 +58,8 @@ namespace bloop_login_regestration.ViewModel
                 }
                 else
                 {
-                    MessageBox.Show("Error: " + response.StatusCode);
+                    var body = await response.Content.ReadAsStringAsync();
+                    MessageBox.Show("Error: " + response.StatusCode + "\n" + body);
                 }
             }
             catch (Exception ex)

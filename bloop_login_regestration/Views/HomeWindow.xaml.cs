@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using bloop_login_regestration.Model;
+using bloop_login_regestration.Services;
 
 namespace bloop_login_regestration.Views
 {
@@ -22,6 +13,23 @@ namespace bloop_login_regestration.Views
     {
         private bool isWindowMaximized = true;
         private Rect previousBounds;
+
+        // Parameterless constructor (keeps compatibility)
+        public HomeWindow()
+        {
+            InitializeComponent();
+        }
+
+        // Constructor used when logging in / passing the user
+        public HomeWindow(User user) : this()
+        {
+            if (user != null)
+            {
+                // store user in session so other views can read it
+                UserSession.CurrentUser = user;
+            }
+        }
+
         private void btnMinimase_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
@@ -58,14 +66,16 @@ namespace bloop_login_regestration.Views
                 isWindowMaximized = true;
             }
         }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            // Полный экран по умолчанию
+            // Start maximized by default
             Width = SystemParameters.WorkArea.Width;
             Height = SystemParameters.WorkArea.Height;
             Left = SystemParameters.WorkArea.Left;
             Top = SystemParameters.WorkArea.Top;
         }
+
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed && !isWindowMaximized)
@@ -74,15 +84,13 @@ namespace bloop_login_regestration.Views
 
         private void MainPage_Click(object sender, RoutedEventArgs e)
         {
-            //var parent = Window.GetWindow(this) as MainWindow;
-            //parent?.NavigateTo(new LoginView());
-
-            //Use code above to make a link in mainpage(aka where all friends are. I used name from our figma)
+            // Hook-up to open the main page (currently placeholder)
+            // You can navigate MainContent here if needed
         }
 
         private void btnProfileCamera_Click(object sender, RoutedEventArgs e)
         {
-
+            // Profile camera click handler (placeholder)
         }
     }
 }

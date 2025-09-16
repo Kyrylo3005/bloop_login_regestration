@@ -6,6 +6,11 @@
              xmlns:local="clr-namespace:bloop_login_regestration.Views"
              mc:Ignorable="d" 
              d:DesignHeight="550" d:DesignWidth="875">
+
+    <!--<UserControl.DataContext>
+        <viewModel:EmailSentViewModel Email="placeholder@example.com"/>
+    </UserControl.DataContext>-->
+    
     <Grid>
         <Border Width="600"
         Height="300"

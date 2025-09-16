@@ -230,8 +230,7 @@
                                     BorderThickness="1"
                                     SnapsToDevicePixels="True">
                                 <Border.Background>
-                                    <!--Знать не знаю почему оно не работает просто с "\Images\avatar.png", по этому временно использую так.-->
-                                    <ImageBrush ImageSource="C:\Users\user1\source\repos\bloop_login_regestration\bloop_login_regestration\Images\avatar.png" Stretch="UniformToFill"/>
+                                    <ImageBrush ImageSource="/Images/avatar.png" Stretch="UniformToFill"/>
                                 </Border.Background>
                             </Border>
 
