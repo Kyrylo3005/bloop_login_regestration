@@ -84,8 +84,8 @@
 
                     <!-- Забув пароль -->
                     <TextBlock FontSize="10.5"
-                   FontFamily="Montserrat"
-                   Margin="0,0,0,15">
+                               FontFamily="Montserrat"
+                               Margin="0,0,0,15">
                 <Hyperlink Click="ForgotPassword_Click"
                            Cursor="Hand"
                            Foreground="#00FFF0"
@@ -107,16 +107,16 @@
 
                     <!-- Кнопка входа -->
                     <Button 
-                    x:Name="btnEnter"
-                    Command="{Binding LoginCommand}"
-                    Content="Увійти"
-                    FontSize="14"
-                    FontFamily="Montserrat"
-                    FontWeight="SemiBold"
-                    Foreground="White"
-                    Margin="0,0,0,5"
-                    HorizontalAlignment="Left"
-                    Cursor="Hand">
+                        x:Name="btnEnter"
+                        Command="{Binding LoginCommand}"
+                        Content="Увійти"
+                        FontSize="14"
+                        FontFamily="Montserrat"
+                        FontWeight="SemiBold"
+                        Foreground="White"
+                        Margin="0,0,0,5"
+                        HorizontalAlignment="Left"
+                        Cursor="Hand">
 
                         <Button.Style>
                             <Style TargetType="Button">

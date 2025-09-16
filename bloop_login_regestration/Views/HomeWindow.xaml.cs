@@ -20,10 +20,69 @@ namespace bloop_login_regestration.Views
     /// </summary>
     public partial class HomeWindow : Window
     {
-        public HomeWindow(User user)
+        private bool isWindowMaximized = true;
+        private Rect previousBounds;
+        private void btnMinimase_Click(object sender, RoutedEventArgs e)
         {
-            InitializeComponent();
-            WelcomeText.Text = $"Вітаємо, {user.Fio}!";
+            WindowState = WindowState.Minimized;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void btnToggleSize_Click(object sender, RoutedEventArgs e)
+        {
+            if (isWindowMaximized)
+            {
+                previousBounds = new Rect(Left, Top, Width, Height);
+
+                Width = 875;
+                Height = 550;
+                WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                WindowState = WindowState.Normal;
+
+                Left = (SystemParameters.WorkArea.Width - Width) / 2 + SystemParameters.WorkArea.Left;
+                Top = (SystemParameters.WorkArea.Height - Height) / 2 + SystemParameters.WorkArea.Top;
+
+                isWindowMaximized = false;
+            }
+            else
+            {
+                Width = SystemParameters.WorkArea.Width;
+                Height = SystemParameters.WorkArea.Height;
+                Left = SystemParameters.WorkArea.Left;
+                Top = SystemParameters.WorkArea.Top;
+
+                isWindowMaximized = true;
+            }
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Полный экран по умолчанию
+            Width = SystemParameters.WorkArea.Width;
+            Height = SystemParameters.WorkArea.Height;
+            Left = SystemParameters.WorkArea.Left;
+            Top = SystemParameters.WorkArea.Top;
+        }
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed && !isWindowMaximized)
+                DragMove();
+        }
+
+        private void MainPage_Click(object sender, RoutedEventArgs e)
+        {
+            //var parent = Window.GetWindow(this) as MainWindow;
+            //parent?.NavigateTo(new LoginView());
+
+            //Use code above to make a link in mainpage(aka where all friends are. I used name from our figma)
+        }
+
+        private void btnProfileCamera_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
