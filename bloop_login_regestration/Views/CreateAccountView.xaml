@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="550" d:DesignWidth="875">
     <Grid>
-        <Border Width="450" Height="500"
+        <Border Width="450" Height="600"
                 Background="#24272739"
                 CornerRadius="56"
                 BorderThickness="1"
@@ -36,10 +36,11 @@
 
                 <!-- Поля формы -->
                 <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="39,0">
+
+                    <!-- Full Name -->
                     <StackPanel>
-                        <TextBlock Text="Електронна пошта / номер телефону*" Foreground="LightGray" FontSize="12" FontFamily="Montserrat" Margin="0,0,0,6"/>
-                        <TextBox x:Name="txtGmail"
-                                 Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+                        <TextBlock Text="Повне імʼя*" Foreground="LightGray" FontSize="12" FontFamily="Montserrat" Margin="0,0,0,6"/>
+                        <TextBox x:Name="txtFullName"
                                  Height="35" Width="250"
                                  Background="#10FFFFFF"
                                  BorderBrush="#444A59"
@@ -62,10 +63,36 @@
                         </TextBox>
                     </StackPanel>
 
+                    <!-- Email -->
+                    <StackPanel>
+                        <TextBlock Text="Електронна пошта*" Foreground="LightGray" FontSize="12" FontFamily="Montserrat" Margin="0,0,0,6"/>
+                        <TextBox x:Name="txtGmail"
+                                 Height="35" Width="250"
+                                 Background="#10FFFFFF"
+                                 BorderBrush="#444A59"
+                                 BorderThickness="1"
+                                 Foreground="White"
+                                 Padding="10"
+                                 FontFamily="Montserrat"
+                                 HorizontalAlignment="Left"
+                                 Margin="0,0,0,10">
+                            <TextBox.Template>
+                                <ControlTemplate TargetType="TextBox">
+                                    <Border CornerRadius="15" 
+                                            Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}">
+                                        <ScrollViewer x:Name="PART_ContentHost" />
+                                    </Border>
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
+                    </StackPanel>
+
+                    <!-- Username -->
                     <StackPanel>
                         <TextBlock Text="Імʼя користувача*" Foreground="LightGray" FontSize="12" FontFamily="Montserrat" Margin="0,0,0,6"/>
                         <TextBox x:Name="txtName"
-                                 Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
                                  Height="35" Width="250"
                                  Background="#10FFFFFF"
                                  BorderBrush="#444A59"
@@ -88,22 +115,40 @@
                         </TextBox>
                     </StackPanel>
 
+                    <!-- Phone -->
                     <StackPanel>
-                        <TextBlock Text="Пароль*" Foreground="LightGray" FontSize="12" FontFamily="Montserrat" Margin="0,0,0,6"/>
-                        <customcontrols:BindablePasswordBox Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                            Height="35"
-                                                            Margin="0,0,0,10">
-                        </customcontrols:BindablePasswordBox>
+                        <TextBlock Text="Номер телефону" Foreground="LightGray" FontSize="12" FontFamily="Montserrat" Margin="0,0,0,6"/>
+                        <TextBox x:Name="txtPhone"
+                                 Height="35" Width="250"
+                                 Background="#10FFFFFF"
+                                 BorderBrush="#444A59"
+                                 BorderThickness="1"
+                                 Foreground="White"
+                                 Padding="10"
+                                 FontFamily="Montserrat"
+                                 HorizontalAlignment="Left"
+                                 Margin="0,0,0,10">
+                            <TextBox.Template>
+                                <ControlTemplate TargetType="TextBox">
+                                    <Border CornerRadius="15" 
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}" 
+                                    BorderThickness="{TemplateBinding BorderThickness}">
+                                        <ScrollViewer x:Name="PART_ContentHost" />
+                                    </Border>
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
                     </StackPanel>
 
-                    <!-- Чекбокс маркетинга -->
-                    <StackPanel Orientation="Horizontal" Margin="2,6,0,0" VerticalAlignment="Center">
-                        <CheckBox VerticalAlignment="Top" Width="18" Height="18" Margin="0,12,8,0"/>
-                        <TextBlock TextWrapping="Wrap" Width="222" 
-                           Foreground="LightGray" FontSize="12" FontFamily="Montserrat">
-                    Надсилайте мені листи з інформацією про оновлення Bloop, підказками та пропозиціями.
-                        </TextBlock>
+                    <!-- Password -->
+                    <StackPanel>
+                        <TextBlock Text="Пароль*" Foreground="LightGray" FontSize="12" FontFamily="Montserrat" Margin="0,0,0,6"/>
+                        <customcontrols:BindablePasswordBox x:Name="passwordBox"
+                                                            Height="35"
+                                                            Margin="0,0,0,10"/>
                     </StackPanel>
+
                 </StackPanel>
 
                 <!-- Легальные тексты -->

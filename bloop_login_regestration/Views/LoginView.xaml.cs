@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using QRCoder;
+using bloop_login_regestration.ViewModel;
 
 namespace bloop_login_regestration.Views
 {
@@ -25,6 +26,7 @@ namespace bloop_login_regestration.Views
         public LoginView()
         {
             InitializeComponent();
+            DataContext = new LoginViewModel(); 
             Loaded += LoginView_Loaded;
         }
         private void LoginView_Loaded(object sender, RoutedEventArgs e)

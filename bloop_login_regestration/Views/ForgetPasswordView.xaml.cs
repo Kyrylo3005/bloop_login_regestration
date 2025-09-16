@@ -1,4 +1,5 @@
-﻿using System;
+﻿using bloop_login_regestration.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace bloop_login_regestration.Views
         public ForgetPasswordView()
         {
             InitializeComponent();
+            DataContext = new ForgetPasswordViewModel();
         }
 
         private void BackLogin_Click(object sender, RoutedEventArgs e)

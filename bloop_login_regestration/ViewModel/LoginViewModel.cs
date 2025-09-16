@@ -75,7 +75,7 @@ namespace bloop_login_regestration.ViewModel
         private bool CanExecuteLoginCommand(object obj)
         {
             bool validData;
-            if (string.IsNullOrEmpty(Username) || Username.Length < 6 || Password==null || Password.Length < 8)
+            if (string.IsNullOrEmpty(Username) || Username.Length < 4 || Password==null || Password.Length < 5)
                 validData = false;
             else validData = true;
             return validData;

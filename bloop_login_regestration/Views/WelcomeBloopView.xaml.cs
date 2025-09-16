@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using bloop_login_regestration.Services;
+using bloop_login_regestration.Model;
 
 namespace bloop_login_regestration.Views
 {
@@ -25,9 +15,30 @@ namespace bloop_login_regestration.Views
             InitializeComponent();
         }
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        private void StartCommunication_Click(object sender, RoutedEventArgs e)
         {
+            OpenHomeWindow();
+        }
 
+
+        
+        private void OpenHomeWindow()
+        {
+            // Get the currently logged-in user from the session
+            var user = UserSession.CurrentUser;
+
+            // If session is empty for any reason, create a minimal fallback user
+            if (user == null)
+            {
+                user = new User { Fio = "Гість", Email = string.Empty, Login = string.Empty, Phone = string.Empty };
+            }
+
+            var home = new HomeWindow(user);
+            home.Show();
+
+            // Close parent window (the window that hosts this UserControl, usually MainWindow)
+            var parent = Window.GetWindow(this);
+            parent?.Close();
         }
     }
 }
