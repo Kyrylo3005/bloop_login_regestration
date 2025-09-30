@@ -281,7 +281,7 @@
                     Background="#11141D"
                     CornerRadius="50"
                     BorderThickness="0,0,0,1"
-                    Padding="8,8,16,8"> 
+                    Padding="8,8,16,8">
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -523,7 +523,7 @@
                                               Stroke="White" StrokeThickness="1.5"/>
                                             <Path Data="M19.5 4V9M22 6.5L17 6.5"
                                               Stroke="White" StrokeThickness="1.5"/>
-                                            
+
                                         </Canvas>
                                     </Button>
                                     <Button Width="24" Height="24" Background="Transparent" BorderThickness="0" Cursor="Hand" Margin="20,0,0,0">
@@ -534,7 +534,7 @@
                                                   Stroke="White" StrokeThickness="1.5"/>
                                         </Canvas>
                                     </Button>
-                                    
+
 
                                     <!-- Поиск -->
                                     <Border Background="#0C0F15"
@@ -581,38 +581,324 @@
                                 </ItemsControl.ItemsPanel>
 
                                 <!-- Сообщение -->
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid Margin="0,6">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-
-                                            <!-- Обертка для сообщений -->
-                                            <Border Background="#1B1E26"
-                                                    Padding="12"
-                                                    CornerRadius="16"
-                                                    MaxWidth="500"
-                                                    HorizontalAlignment="{Binding Alignment}">
-                                                <StackPanel>
-                                                    <TextBlock Text="{Binding Text}"
-                                                               Foreground="White"
-                                                               FontSize="14"
-                                                               TextWrapping="Wrap"
-                                                               Margin="0,0,0,4"/>
-
-                                                    <TextBlock Text="{Binding Time}"
-                                                               Foreground="#666F86"
-                                                               FontSize="11"
-                                                               HorizontalAlignment="Right"/>
-                                                </StackPanel>
+                                <StackPanel Margin="0,5,0,16">
+                                    
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                                        <Grid Margin="0,0,0,15">
+                                            <Border Background="#11141D"
+                                                CornerRadius="20"
+                                                Padding="30,10"
+                                                MaxWidth="640"
+                                                Margin="0,0,0,4">
+                                                <TextBlock Text="Слухай, я сьогодні зайшов у гру на 15 хв, щоб “тільки щось подивитись” — і вже п’ята ранку. Здається, я в часовій пастці. Але приємна новина — я нафармив того рідкісного маунта. Хочеш покататися? 😏 (в грі, звісно... або й ні )"
+                                                       Foreground="White"
+                                                       FontSize="16"
+                                                       TextWrapping="Wrap"
+                                                       Margin="10,0,0,0"/>
                                             </Border>
+                                            <TextBlock Text="27.07.2025, 14:32"
+                                                   Foreground="#666F86"
+                                                   FontSize="12"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Bottom"
+                                                   Margin="0,0,-95,0"/>
+                                            <Ellipse Width="28" Height="28"
+                                                     Fill="#11141D"
+                                                     Stroke="#1B1E26" StrokeThickness="5"
+                                                     HorizontalAlignment="Left"
+                                                     VerticalAlignment="Bottom"
+                                                     Margin="0,0,0,0"/>
                                         </Grid>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </ScrollViewer>
+                                    </StackPanel>                                    
 
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
+                                        <Grid Margin="0,0,0,15">
+                                            <Border Background="#282C36"
+                                                    CornerRadius="20"
+                                                    Padding="30,10"
+                                                    MaxWidth="640"
+                                                    Margin="0,0,0,4">
+                                                <TextBlock Text="Мені здається, наші ігрові сесії — це як експерименти з непередбачуваним результатом. Мінімум три баги, один крик &quot;ЧОМУ Я В СТЕЛІ УЖЕ 10 ХВИЛИН?&quot;, і обов’язковий “о, я випадково вбила квестового НПСа”."
+                                                           Foreground="White"
+                                                           FontSize="16"
+                                                           TextWrapping="Wrap"/>
+                                            </Border>
+                                            <TextBlock Text="27.07.2025, 14:45"
+                                                       Foreground="#666F86"
+                                                       FontSize="12"
+                                                       HorizontalAlignment="Left"
+                                                       VerticalAlignment="Bottom"
+                                                       Margin="-95,0,0,0"/>
+                                            <Ellipse Width="28" Height="28"
+                                                     Fill="#282C36"
+                                                     Stroke="#1B1E26" StrokeThickness="5"
+                                                     HorizontalAlignment="Right"
+                                                     VerticalAlignment="Bottom"
+                                                     Margin="0,0,0,0"/>
+                                        </Grid>
+                                    </StackPanel>
+
+                                    <Border Height="1" Background="#2A2F3A" Opacity="0.6" Margin="0,8,0,12"/>
+
+                                    <Grid Margin="0,0,0,12">
+                                        <Border>
+                                            <DockPanel LastChildFill="False" VerticalAlignment="Center" >
+                                                <!-- Іконка дзвінка -->
+                                                <Viewbox Width="14" Height="14" Margin="0,0,8,0" DockPanel.Dock="Left">
+                                                    <Canvas Width="22" Height="22">
+                                                        <Path Data="M2.77762 10.9424C1.8296 9.28931 1.37185 7.93948 1.09584 6.57121C0.687622 4.54758 1.62181 2.57081 3.16938 1.30947C3.82345 0.776383 4.57323 0.958518 4.96 1.6524L5.83318 3.21891C6.52529 4.46057 6.87134 5.08139 6.8027 5.73959C6.73407 6.39779 6.26737 6.93386 5.33397 8.00601L2.77762 10.9424ZM2.77762 10.9424C4.69651 14.2883 7.70784 17.3013 11.0576 19.2224M11.0576 19.2224C12.7107 20.1704 14.0605 20.6282 15.4288 20.9042C17.4524 21.3124 19.4292 20.3782 20.6905 18.8306C21.2236 18.1766 21.0415 17.4268 20.3476 17.04L18.7811 16.1668C17.5394 15.4747 16.9186 15.1287 16.2604 15.1973C15.6022 15.2659 15.0661 15.7326 13.994 16.666L11.0576 19.2224Z"
+                                                              Stroke="#6DA1FF" StrokeThickness="1.5"/>
+                                                    </Canvas>
+                                                </Viewbox>
+
+                                                <!-- Текст події -->
+                                                <TextBlock Text="Fizzik"
+                                                           Foreground="#6DA1FF"
+                                                           FontSize="14"
+                                                           VerticalAlignment="Center"/>
+                                                <TextBlock Text=" розпочав виклик, який тривав 3 хвилини."
+                                                           Foreground="#666F86"
+                                                           FontSize="14"
+                                                           VerticalAlignment="Center"/>
+
+                                                <!-- Час праворуч у плашці (за потреби) -->
+                                                <TextBlock Text="27.07.2025, 14:57"
+                                                           Foreground="#666F86"
+                                                           FontSize="12"
+                                                           Margin="10,0,0,0"
+                                                           VerticalAlignment="Center"/>
+                                            </DockPanel>
+                                        </Border>
+                                    </Grid>
+                                    
+                                    <Border Height="1" Background="#2A2F3A" Opacity="0.6" Margin="0,12,0,8"/>
+                                    
+                                    <!-- Сообщение с картинкой от собеседника -->
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                                        <Grid Margin="0,0,0,15">
+                                            <Border CornerRadius="12" Background="Transparent" Margin="0,0,0,4">
+                                                <Image Source="/Images/chat_image.png"
+                                                       Stretch="Fill"
+                                                       Width="448"
+                                                       Height="251"
+                                                       ClipToBounds="True"/>
+                                            </Border>
+                                            <TextBlock Text="27.07.2025, 15:23"
+                                                       Foreground="#666F86"
+                                                       FontSize="12"
+                                                       HorizontalAlignment="Right"
+                                                       VerticalAlignment="Top"
+                                                       Margin="0,240,-95,0"/>
+                                            <Ellipse Width="28" Height="28"
+                                                     Fill="#11141D"
+                                                     Stroke="#1B1E26" StrokeThickness="5"
+                                                     HorizontalAlignment="Left"
+                                                     VerticalAlignment="Bottom"
+                                                     Margin="0,0,0,0"/>
+
+                                        </Grid>
+                                    </StackPanel>
+
+                                    <!-- Сообщение с текстом от нашего юзера -->
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
+                                        <Grid Margin="0,0,0,15">
+                                            <Border Background="#282C36"
+                                                CornerRadius="20"
+                                                Padding="30,10"
+                                                MaxWidth="640"
+                                                Margin="0,0,0,4">
+                                                <TextBlock Text="Слухай, я вчора добила ще одну главу в The Last of Us — і чорт забирай, мені треба було терапевта одразу після титрів. Це не гра, це емоційне випробування на виживання. 😭"
+                                                       Foreground="White"
+                                                       FontSize="16"
+                                                       TextWrapping="Wrap"/>
+                                            </Border>
+                                            <TextBlock Text="27.07.2025, 15:37"
+                                                   Foreground="#666F86"
+                                                   FontSize="12"
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Bottom"
+                                                   Margin="-95,0,0,0"/>
+                                            <Ellipse Width="28" Height="28"
+                                                     Fill="#282C36"
+                                                     Stroke="#1B1E26" StrokeThickness="5"
+                                                     HorizontalAlignment="Right"
+                                                     VerticalAlignment="Bottom"
+                                                     Margin="0,0,0,0"/>
+                                        </Grid>
+                                    </StackPanel>
+                                    
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                                        <Grid Margin="0,0,0,15">
+                                            <Border Background="#11141D"
+                                                CornerRadius="20"
+                                                Padding="30,10"
+                                                MaxWidth="640"
+                                                Margin="0,0,0,4">
+                                                <TextBlock Text="))"
+                                                       Foreground="White"
+                                                       FontSize="16"
+                                                       TextWrapping="Wrap"
+                                                       Margin="10,0,0,0"/>
+                                            </Border>
+                                            <TextBlock Text="27.07.2025, 15:37"
+                                                   Foreground="#666F86"
+                                                   FontSize="12"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Bottom"
+                                                   Margin="0,0,-95,0"/>
+                                            <Ellipse Width="28" Height="28"
+                                                     Fill="#11141D"
+                                                     Stroke="#1B1E26" StrokeThickness="5"
+                                                     HorizontalAlignment="Left"
+                                                     VerticalAlignment="Bottom"
+                                                     Margin="0,0,0,0"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </StackPanel>
+
+                            </ItemsControl>
+
+                        </ScrollViewer>
+                    </Grid>
+                </Border>
+
+                <!-- Нижняя панель чата -->
+                <Border Grid.Row="2"
+                        Background="#3F44443F"
+                        CornerRadius="20"
+                        Margin="20,0,20,20"
+                        Padding="12,15"
+                        VerticalAlignment="Bottom"
+                        BorderThickness="1"
+                        BorderBrush="#62626240">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <!-- Поле ввода -->
+                            <ColumnDefinition Width="*"/>
+                            <!-- Кнопки справа -->
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Width="28" Height="28"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Cursor="Hand"
+                                HorizontalAlignment="Left">
+                            <Canvas Width="20" Height="22">
+                                <Path Data="M1.5 7.23077V4.46154C1.5 2.54978 3.067 1 5 1C6.933 1 8.5 2.54978 8.5 4.46154L8.5 8.26923C8.5 9.22511 7.7165 10 6.75 10C5.7835 10 5 9.22511 5 8.26923L5 4.46154"
+                                    Stroke="White"
+                                    StrokeThickness="1.5"
+                                    StrokeLineJoin="Round"/>
+                                <Path Data="M10.5 1H10.7727C14.0339 1 15.6645 1 16.7969 1.79784C17.1214 2.02643 17.4094 2.29752 17.6523 2.60289C18.5 3.66867 18.5 5.20336 18.5 8.27273V10.8182C18.5 13.7814 18.5 15.2629 18.0311 16.4462C17.2772 18.3486 15.6829 19.8491 13.6616 20.5586C12.4044 21 10.8302 21 7.68182 21C5.88275 21 4.98322 21 4.26478 20.7478C3.10979 20.3424 2.19875 19.4849 1.76796 18.3979C1.5 17.7217 1.5 16.8751 1.5 15.1818V11"
+                                    Stroke="White"
+                                    StrokeThickness="1.5"
+                                    StrokeLineJoin="Round"/>
+                                <Path Data="M18.5 11C18.5 12.8409 17.0076 14.3333 15.1667 14.3333C14.5009 14.3333 13.716 14.2167 13.0686 14.3901C12.4935 14.5442 12.0442 14.9935 11.8901 15.5686C11.7167 16.216 11.8333 17.0009 11.8333 17.6667C11.8333 19.5076 10.3409 21 8.5 21"
+                                    Stroke="White"
+                                    StrokeThickness="1.5"
+                                    StrokeLineJoin="Round"/>
+
+                            </Canvas>
+                        </Button>
+                        <!-- Текстовое поле -->
+                        <TextBox x:Name="MessageInput"
+                                 Grid.Column="0"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 Foreground="#666F86"
+                                 FontSize="16"
+                                 VerticalAlignment="Center"
+                                 Text="Написати"
+                                 AcceptsReturn="True"
+                                 TextWrapping="Wrap"
+                                 Padding="40,2"/>
+
+                        <!-- Кнопки справа -->
+                        <StackPanel Grid.Column="1"
+                                    Orientation="Horizontal"
+                                    VerticalAlignment="Center"
+                                    Margin="8,0,0,0">
+
+                            <!-- Кнопка смайлов -->
+                            <Button
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    Cursor="Hand"
+                                    Margin="24,0,0,0">
+                                <Canvas Width="24" Height="24">
+                                    <Path Data="M4 11V15C4 18.2998 4 19.9497 5.02513 20.9749C6.05025 22 7.70017 22 11 22H13C16.2998 22 17.9497 22 18.9749 20.9749C20 19.9497 20 18.2998 20 15V11"
+                                          Stroke="White"
+                                          StrokeThickness="1.5"
+                                          StrokeLineJoin="Round"/>
+                                    <Path Data="M3 9C3 8.25231 3 7.87846 3.20096 7.6C3.33261 7.41758 3.52197 7.26609 3.75 7.16077C4.09808 7 4.56538 7 5.5 7H18.5C19.4346 7 19.9019 7 20.25 7.16077C20.478 7.26609 20.6674 7.41758 20.799 7.6C21 7.87846 21 8.25231 21 9C21 9.74769 21 10.1215 20.799 10.4C20.6674 10.5824 20.478 10.7339 20.25 10.8392C19.9019 11 19.4346 11 18.5 11H5.5C4.56538 11 4.09808 11 3.75 10.8392C3.52197 10.7339 3.33261 10.5824 3.20096 10.4C3 10.1215 3 9.74769 3 9Z"
+                                          Stroke="White"
+                                          StrokeThickness="1.5"
+                                          StrokeLineJoin="Round"/>
+                                    <Path Data="M6 3.78571C6 2.79949 6.79949 2 7.78571 2H8.14286C10.2731 2 12 3.7269 12 5.85714V7H9.21429C7.43908 7 6 5.56091 6 3.78571Z"
+                                          Stroke="White"
+                                          StrokeThickness="1.5"
+                                          StrokeLineJoin="Round"/>
+                                    <Path Data="M18 3.78571C18 2.79949 17.2005 2 16.2143 2H15.8571C13.7269 2 12 3.7269 12 5.85714V7H14.7857C16.5609 7 18 5.56091 18 3.78571Z"
+                                          Stroke="White"
+                                          StrokeThickness="1.5"
+                                          StrokeLineJoin="Round"/>
+                                    <Path Data="M12 11L12 22"
+                                          Stroke="White"
+                                          StrokeThickness="1.5"
+                                          StrokeLineJoin="Round"/>
+
+                                </Canvas>
+                            </Button>
+
+                            <!-- Кнопка вложения -->
+                            <Button Width="28" Height="28"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    Cursor="Hand"
+                                    Margin="24,0,0,0">
+                                <Canvas Width="24" Height="24">
+                                    <!-- Circle -->
+                                    <Path Data="M12,2 A10,10 0 1 1 11.999,2Z"
+                                          Stroke="White"
+                                          StrokeThickness="1.5"
+                                          StrokeLineJoin="Round"/>
+                                    <!-- Smile -->
+                                    <Path Data="M8,15 C8.91212,16.2144 10.3643,17 12,17 C13.6357,17 15.0879,16.2144 16,15"
+                                          Stroke="White"
+                                          StrokeThickness="1.5"
+                                          StrokeLineJoin="Round"/>
+                                    <!-- Right eye -->
+                                    <Path Data="M15,8 C15,8 14,9 14,10 C14.75,9 16.25,9 17,10"
+                                          Stroke="White"
+                                          StrokeThickness="1.5"
+                                          StrokeLineJoin="Round"/>
+                                    <!-- Left eye -->
+                                    <Path Data="M9,8 C9,8 10,9 10,10 C9.25,9 7.75,9 7,10"
+                                          Stroke="White"
+                                          StrokeThickness="1.5"
+                                          StrokeLineJoin="Round"/>
+                                </Canvas>
+                            </Button>
+
+
+                            <!-- Кнопка отправки -->
+                            <Button Width="24" Height="24"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    Cursor="Hand"
+                                    Margin="24,0,10,0">
+                                <Canvas Width="20" Height="20">
+                                    <Path Data="M21.0477 3.05293C18.8697 0.707363 2.48648 6.4532 2.50001 8.551C2.51535 10.9299 8.89809 11.6617 10.6672 12.1581C11.7311 12.4565 12.016 12.7625 12.2613 13.8781C13.3723 18.9305 13.9301 21.4435 15.2014 21.4996C17.2278 21.5892 23.1733 5.342 21.0477 3.05293Z"
+                                          Stroke="White"
+                                          StrokeThickness="1.5"
+                                          StrokeLineJoin="Round"/>
+                                    <Path Data="M11.5 12.5L15 9"
+                                          Stroke="White"
+                                          StrokeThickness="1.5"
+                                          StrokeLineJoin="Round"/>
+                                </Canvas>
+                            </Button>
+                        </StackPanel>
                     </Grid>
                 </Border>
 
@@ -620,11 +906,255 @@
 
                 <!-- Провиль -->
                 <Border Grid.Column="1"
-                    Background="#11141D"
-                    CornerRadius="50"
-                    BorderThickness="1,0,0,0"
-                    Margin="4,10,0,0"/>
+                        Background="#11141D"
+                        CornerRadius="50"
+                        BorderThickness="1,0,0,0"
+                        Margin="4,10,0,0"
+                        Padding="20">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <!-- Контент прокручивается -->
+                            <RowDefinition Height="Auto"/>
+                            <!-- Кнопка внизу -->
+                        </Grid.RowDefinitions>
 
+                    
+                        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                            <StackPanel Margin="0,10,0,10">
+
+                                <!-- Аватар и имя -->
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                                    <Grid Width="79" Height="79" Margin="0,0,8,0">
+                                        <Border CornerRadius="14"
+                                                Cursor="Hand"
+                                                BorderThickness="1"
+                                                SnapsToDevicePixels="True">
+                                            <Border.Background>
+                                                <ImageBrush ImageSource="/Images/avatar.png" Stretch="UniformToFill"/>
+                                            </Border.Background>
+                                        </Border>
+                                        <!-- Статус пользователя -->
+                                        <Ellipse Width="19" Height="19"
+                                                 Fill="#666F86"
+                                                 Stroke="#11141D" StrokeThickness="3"
+                                                 HorizontalAlignment="Right"
+                                                 VerticalAlignment="Bottom"
+                                                 Margin="0,0,1,1"/>
+                                    </Grid>
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Text="Fizzik" Foreground="#6DA1FF" FontSize="20" FontWeight="SemiBold"/>
+                                        <TextBlock Text="fizzik_pro" Foreground="White" FontSize="14"/>
+                                        <TextBlock Text="онлайн сьогодні, 14:43" Foreground="#666F86" FontSize="12"/>
+                                    </StackPanel>
+                                    <Canvas Width="3" Height="18" Margin="70,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Right">
+                                        <Path Data="M4.5 2.5C4.5 1.67157 3.82843 1 3 1C2.17157 1 1.5 1.67157 1.5 2.5C1.5 3.32843 2.17157 4 3 4C3.82843 4 4.5 3.32843 4.5 2.5Z"
+                                                      Stroke="White"
+                                                      StrokeThickness="1.5"/>
+                                        <Path Data="M4.5 10C4.5 9.17157 3.82843 8.5 3 8.5C2.17157 8.5 1.5 9.17157 1.5 10C1.5 10.8284 2.17157 11.5 3 11.5C3.82843 11.5 4.5 10.8284 4.5 10Z"
+                                                      Stroke="White"
+                                                      StrokeThickness="1.5"/>
+                                        <Path Data="M4.5 17.5C4.5 16.6716 3.82843 16 3 16C2.17157 16 1.5 16.6716 1.5 17.5C1.5 18.3284 2.17157 19 3 19C3.82843 19 4.5 18.3284 4.5 17.5Z"
+                                                      Stroke="White"
+                                                      StrokeThickness="1.5"/>
+                                    </Canvas>
+                                </StackPanel>
+
+
+                                <Border Height="1" Background="#2A2F3A" Opacity="0.6" Margin="0,12,0,12"/>
+
+                                <!-- Про мене -->
+                                <TextBlock Text="Про мене"
+                                           Foreground="White"
+                                           FontSize="14"
+                                           FontWeight="SemiBold"
+                                           Margin="0,0,0,5"/>
+                                <TextBlock Text="Тут, щоб чатитись, сміятись і ділитись дивними фактами про космос. Fizzik — це більше стан душі, ніж нікнейм. Якщо не відповідаю — напевно, завис у голосовому каналі або шукаю кнопку &quot;вийти з реальності&quot;."
+                                           Foreground="White"
+                                           FontSize="12"
+                                           TextWrapping="Wrap"/>
+
+                                <Border Height="1" Background="#2A2F3A" Opacity="0.6" Margin="0,12,0,12"/>
+
+                                <!-- Кнопка повідомлення -->
+                                <DockPanel LastChildFill="False" Margin="0,4,0,4">
+                                    <Canvas Width="24" Height="24" Margin="0,0,10,0">
+                                        <Path Data="M5.15837 11.491C5.08489 12.887 5.16936 14.373 3.92213 15.3084C3.34164 15.7438 3 16.427 3 17.1527C3 18.1508 3.7818 19 4.8 19H19.2C20.2182 19 21 18.1508 21 17.1527C21 16.427 20.6584 15.7438 20.0779 15.3084C18.8306 14.373 18.9151 12.887 18.8416 11.491C18.6501 7.85223 15.6438 5 12 5C8.35617 5 5.34988 7.85222 5.15837 11.491Z"
+                                              Stroke="White"
+                                              StrokeThickness="1.5"/>
+                                        <Path Data="M10.5 3.125C10.5 3.95343 11.1716 5 12 5C12.8284 5 13.5 3.95343 13.5 3.125C13.5 2.29657 12.8284 2 12 2C11.1716 2 10.5 2.29657 10.5 3.125Z"
+                                              Stroke="White"
+                                              StrokeThickness="1.5"/>
+                                        <Path Data="M15 19C15 20.6569 13.6569 22 12 22C10.3431 22 9 20.6569 9 19"
+                                              Stroke="White"
+                                              StrokeThickness="1.5"/>
+                                    </Canvas>
+                                    <TextBlock Text="Сповіщення" Foreground="White" FontSize="16" VerticalAlignment="Center"/>
+                                    <ToggleButton
+                                                  IsChecked="True" DockPanel.Dock="Right" Width="65">
+                                        <ToggleButton.Template>
+                                            <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                                <Border x:Name="SwitchBorder"
+                                                        CornerRadius="16"
+                                                        Background="#1b1e26"
+                                                        Padding="2">
+                                                    <Ellipse x:Name="Knob"
+                                                             Fill="#3E70CD"
+                                                             Width="26" Height="26"
+                                                             HorizontalAlignment="Left"/>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <!-- Когда он -->
+                                                    <Trigger Property="IsChecked" Value="True">
+                                                        <Setter TargetName="Knob" Property="Fill" Value="#3E70CD"/>
+                                                        <Setter TargetName="Knob" Property="HorizontalAlignment" Value="Right"/>
+                                                    </Trigger>
+
+                                                    <!-- Когда офф -->
+                                                    <Trigger Property="IsChecked" Value="False">
+                                                        <Setter TargetName="Knob" Property="Fill" Value="#666F86"/>
+                                                        <Setter TargetName="Knob" Property="HorizontalAlignment" Value="Left"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </ToggleButton.Template>
+                                    </ToggleButton>
+                                </DockPanel>
+
+                                <Border Height="1" Background="#2A2F3A" Opacity="0.6" Margin="0,12,0,12"/>
+
+                                <!-- Фото, відео, файли -->
+                                <StackPanel Orientation="Vertical">
+                                    <DockPanel Margin="0,4,0,4">
+                                        <Canvas Width="24" Height="24" Margin="0,0,10,0">
+                                            <Path Data="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z"
+                                                  Stroke="White"
+                                                  StrokeThickness="1.5"/>
+                                            <Path Data="M16 22C15.3805 19.7749 13.9345 17.7821 11.8765 16.3342C9.65761 14.7729 6.87163 13.9466 4.01569 14.0027C3.67658 14.0019 3.33776 14.0127 3 14.0351"
+                                                  Stroke="White"
+                                                  StrokeThickness="1.5"/>
+                                            <Path Data="M13 18C14.7015 16.6733 16.5345 15.9928 18.3862 16.0001C19.4362 15.999 20.4812 16.2216 21.5 16.6617"
+                                                  Stroke="White"
+                                                  StrokeThickness="1.5"/>
+                                        </Canvas>
+                                        <TextBlock Text="Фото" Foreground="White" FontSize="14" VerticalAlignment="Center"/>
+                                        <TextBlock Text="1765" Foreground="#6DA1FF" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                                    </DockPanel>
+                                    <DockPanel Margin="0,4,0,4">
+                                        <Canvas Width="24" Height="24" Margin="0,0,10,0">
+                                            <Path Data="M2.5 7.5H21.5"
+                                                  Stroke="White"
+                                                  StrokeThickness="1.5"/>
+                                            <Path Data="M17 2.5L14 7.5"
+                                                  Stroke="White"
+                                                  StrokeThickness="1.5"/>
+                                            <Path Data="M10 2.5L7 7.5"
+                                                  Stroke="White"
+                                                  StrokeThickness="1.5"/>
+                                            <Path Data="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z"
+                                                  Stroke="White"
+                                                  StrokeThickness="1.5"/>
+                                            <Path Data="M14.9531 14.8948C14.8016 15.5215 14.0857 15.9644 12.6539 16.8502C11.2697 17.7064 10.5777 18.1346 10.0199 17.9625C9.78934 17.8913 9.57925 17.7562 9.40982 17.57C9 17.1198 9 16.2465 9 14.5C9 12.7535 9 11.8802 9.40982 11.4299C9.57925 11.2438 9.78934 11.1087 10.0199 11.0375C10.5777 10.8654 11.2697 11.2936 12.6539 12.1498C14.0857 13.0356 14.8016 13.4785 14.9531 14.1052C15.0156 14.3639 15.0156 14.6361 14.9531 14.8948Z"
+                                                  Stroke="White"
+                                                  StrokeThickness="1.5"/>
+
+                                        </Canvas>
+                                        <TextBlock Text="Відео" Foreground="White" FontSize="14" VerticalAlignment="Center"/>
+                                        <TextBlock Text="569" Foreground="#6DA1FF" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                                    </DockPanel>
+                                    <DockPanel Margin="0,4,0,4">
+                                        <Canvas Width="24" Height="24" Margin="0,0,10,0">
+                                            <Path Data="M12.5 2H12.7727C16.0339 2 17.6645 2 18.7969 2.79784C19.1214 3.02643 19.4094 3.29752 19.6523 3.60289C20.5 4.66867 20.5 6.20336 20.5 9.27273V11.8182C20.5 14.7814 20.5 16.2629 20.0311 17.4462C19.2772 19.3486 17.6829 20.8491 15.6616 21.5586C14.4044 22 12.8302 22 9.68182 22C7.88275 22 6.98322 22 6.26478 21.7478C5.10979 21.3424 4.19875 20.4849 3.76796 19.3979C3.5 18.7217 3.5 17.8751 3.5 16.1818V12"
+                                                  Stroke="White"
+                                                  StrokeThickness="1.5"/>
+                                            <Path Data="M20.5 12C20.5 13.8409 19.0076 15.3333 17.1667 15.3333C16.5009 15.3333 15.716 15.2167 15.0686 15.3901C14.4935 15.5442 14.0442 15.9935 13.8901 16.5686C13.7167 17.216 13.8333 18.0009 13.8333 18.6667C13.8333 20.5076 12.3409 22 10.5 22"
+                                                  Stroke="White"
+                                                  StrokeThickness="1.5"/>
+                                            <Path Data="M4.5 7.5C4.99153 8.0057 6.29977 10 7 10M9.5 7.5C9.00847 8.0057 7.70023 10 7 10M7 10L7 2"
+                                                  Stroke="White"
+                                                  StrokeThickness="1.5"/>
+                                        </Canvas>
+
+                                        <TextBlock Text="Файли" Foreground="White" FontSize="14" VerticalAlignment="Center"/>
+                                        <TextBlock Text="73" Foreground="#6DA1FF" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                                    </DockPanel>
+                                </StackPanel>
+
+                                <!-- Разделитель -->
+                                <Border Height="1" Background="#2A2F3A" Opacity="0.6" Margin="0,12,0,12"/>
+
+                                <!-- Спільні сервери -->
+                                <DockPanel Margin="0,0,0,8">
+                                    <TextBlock Text="Спільні сервери"
+                                           Foreground="White"
+                                           FontSize="14"
+                                           FontWeight="SemiBold"
+                                           VerticalAlignment="Center"/>
+                                    <TextBlock Text="3" 
+                                               Foreground="#6DA1FF" 
+                                               FontSize="14" 
+                                               VerticalAlignment="Center" 
+                                               HorizontalAlignment="Right"/>
+                                </DockPanel>
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal" Margin="0,4,0,4">
+                                        <Ellipse Width="65" Height="65">
+                                            <Ellipse.Fill>
+                                                <ImageBrush ImageSource="/Images/chat_image.png"/>
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                        <TextBlock Text="Ghost Typers"
+                                                   Foreground="White"
+                                                   FontSize="14"
+                                                   VerticalAlignment="Center"
+                                                   Margin="12,0,0,0"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,4,0,4">
+                                        <Ellipse Width="65" Height="65">
+                                            <Ellipse.Fill>
+                                                <ImageBrush ImageSource="/Images/server.png"/>
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                        <TextBlock Text="Котики й Кофеїн"
+                                                   Foreground="White"
+                                                   FontSize="14"
+                                                   VerticalAlignment="Center"
+                                                   Margin="12,0,0,0"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,4,0,4">
+                                        <Ellipse Width="65" Height="65">
+                                            <Ellipse.Fill>
+                                                <ImageBrush ImageSource="/Images/bloop.png"/>
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                        <TextBlock Text="Pixel Шум"
+                                                   Foreground="White"
+                                                   FontSize="14"
+                                                   VerticalAlignment="Center"
+                                                   Margin="12,0,0,0"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </ScrollViewer>
+
+                        <!-- Нижняя часть (фиксированная кнопка) -->
+                        <StackPanel Grid.Row="1" Margin="0,10,0,0">
+                            <Border Height="1"
+                                    Background="#2A2F3A"
+                                    Opacity="0.6"
+                                    Margin="0,0,0,12"/>
+                            <Button Background="Transparent"
+                                    BorderThickness="0"
+                                    Cursor="Hand"
+                                    VerticalAlignment="Bottom">
+                                <TextBlock Text="Повний профіль"
+                                           Foreground="#6DA1FF"
+                                           FontSize="14"
+                                           FontWeight="SemiBold"/>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </Border>
             </Grid>
         </Grid>
     </Grid>

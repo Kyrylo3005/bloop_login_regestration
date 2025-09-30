@@ -25,5 +25,14 @@ namespace bloop_login_regestration.Views
             InitializeComponent();
         }
 
+        private void Friend_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BubbleByte_Friend_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
