@@ -104,6 +104,10 @@ namespace bloop_login_regestration.ViewModel
                         Application.Current.Dispatcher.Invoke(() =>
                         {
                             var home = new HomeWindow(user);
+
+                            // Load MainPageView right after login
+                            home.NavigateTo(new MainPageView());
+
                             home.Show();
 
                             Application.Current.MainWindow.Close();
@@ -125,6 +129,7 @@ namespace bloop_login_regestration.ViewModel
                 ErrorMessage = "Connection error: " + ex.Message;
             }
         }
+
 
         private void NavigateToForgotPassword()
         {

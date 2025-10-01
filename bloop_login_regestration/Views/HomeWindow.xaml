@@ -26,7 +26,7 @@
                     <ControlTemplate TargetType="Button">
                         <Grid>
                             <Ellipse Fill="{TemplateBinding Background}"/>
-
+                            <ContentControl x:Name="MainContent"/>
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                         <ControlTemplate.Triggers>

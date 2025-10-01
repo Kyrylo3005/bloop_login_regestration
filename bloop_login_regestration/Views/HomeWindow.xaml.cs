@@ -82,6 +82,10 @@ namespace bloop_login_regestration.Views
                 DragMove();
         }
 
+        public void NavigateTo(System.Windows.Controls.UserControl view)
+        {
+            MainContent.Content = view;
+        }
         private void MainPage_Click(object sender, RoutedEventArgs e)
         {
             // Hook-up to open the main page (currently placeholder)

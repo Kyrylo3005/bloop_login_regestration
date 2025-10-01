@@ -10,6 +10,10 @@
 
   <ItemGroup>
     <None Remove="Images\avatar.png" />
+    <None Remove="Images\bloop.png" />
+    <None Remove="Images\BubbleByte.png" />
+    <None Remove="Images\chat_image.png" />
+    <None Remove="Images\server.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,6 +22,10 @@
 
   <ItemGroup>
     <Resource Include="Images\avatar.png" />
+    <Resource Include="Images\bloop.png" />
+    <Resource Include="Images\BubbleByte.png" />
+    <Resource Include="Images\chat_image.png" />
+    <Resource Include="Images\server.png" />
   </ItemGroup>
 
 </Project>

@@ -2,9 +2,13 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:bloop_login_regestration"
-             StartupUri="Views/MainWindow.xaml">
-    <!-- Temporary using home for testing, change Uri to "Views/MainWindow.xaml" after finishing testing, so it'll open as register/login page-->
+             xmlns:conv="clr-namespace:bloop_login_regestration.Converters"
+             StartupUri="Views/MainWindow.xaml"
+             >
     <Application.Resources>
-         
+        <conv:BoolToAlignmentConverter x:Key="BoolToAlignmentConverter"/>
+        <conv:BoolToOppositeAlignmentConverter x:Key="BoolToOppositeAlignmentConverter"/>
+        <conv:BoolToEllipseAlignmentConverter x:Key="BoolToEllipseAlignmentConverter"/>
+        <conv:BoolToBrushConverter x:Key="BoolToBrushConverter"/>
     </Application.Resources>
 </Application>

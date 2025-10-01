@@ -1,7 +1,5 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Net.Http.Json;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
