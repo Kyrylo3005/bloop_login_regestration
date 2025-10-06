@@ -583,7 +583,7 @@
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Margin="0,5,0,16">
-                                            <!-- Message container: alignment left or right depending on IsOwnMessage -->
+                                            <!-- Message container: alignment left or right -->
                                             <StackPanel Orientation="Vertical"
                             HorizontalAlignment="{Binding IsOwnMessage, Converter={StaticResource BoolToAlignmentConverter}}">
                                                 <Grid Margin="0,0,0,15">
@@ -600,7 +600,7 @@
                                        Margin="10,0,0,0"/>
                                                     </Border>
 
-                                                    <!-- Timestamp (positioned near bubble; opposite alignment is handled by margins) -->
+                                                    <!-- Timestamp -->
                                                     <TextBlock Text="{Binding Timestamp, StringFormat={}{0:dd.MM.yyyy HH:mm}}"
                                    Foreground="#666F86"
                                    FontSize="12"
@@ -620,6 +620,8 @@
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
+
+
 
 
 

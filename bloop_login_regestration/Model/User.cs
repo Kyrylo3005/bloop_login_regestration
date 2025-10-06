@@ -14,6 +14,7 @@ namespace bloop_login_regestration.Model
         public string Login { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+        public string AvatarUrl { get; set; }
         public bool IsEmailConfirmed { get; set; }
     }
 }

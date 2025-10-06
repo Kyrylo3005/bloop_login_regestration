@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using bloop_login_regestration.Model;
+using bloop_login_regestration.ViewModel;
+using System;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace bloop_login_regestration.Views
 {
@@ -22,49 +16,44 @@ namespace bloop_login_regestration.Views
         public MainPageView()
         {
             InitializeComponent();
+            DataContext = new MainPageViewModel();
         }
 
-        private void Friend_Click(object sender, RoutedEventArgs e)
+        private async void Friend_Click(object sender, RoutedEventArgs e)
         {
-            var tag = (sender as FrameworkElement)?.Tag?.ToString();
-
-            if (string.IsNullOrEmpty(tag))
+            if ((sender as FrameworkElement)?.Tag is not string friendIdStr || !int.TryParse(friendIdStr, out var friendId))
                 return;
 
-            int chatId = 0;
+            var myId = Services.UserSession.CurrentUser.Id;
 
-            // For now: map tags manually (later you’ll replace with real data from API)
-            switch (tag)
-            {
-                case "BubbleByte":
-                    chatId = 1;
-                    break;
-                case "Bloop":
-                    chatId = 2;
-                    break;
-                default:
-                    // Groups or others
-                    chatId = 99;
-                    break;
-            }
+            using var http = new HttpClient { BaseAddress = new Uri("https://localhost:7214/") };
+            var request = new { User1Id = myId, User2Id = friendId };
+            var response = await http.PostAsJsonAsync("Chat/CreatePrivateChat", request);
 
-            if (chatId > 0)
+            if (response.IsSuccessStatusCode)
             {
-                OpenChat(chatId);
+                var chatId = await response.Content.ReadFromJsonAsync<int>();
+                var chatView = new ChatView(chatId);
+                var home = (HomeWindow)Application.Current.MainWindow;
+                home.NavigateTo(chatView);
             }
         }
 
 
+        // Old placeholder forwarded click — kept for XAML references
         private void BubbleByte_Friend_Click(object sender, RoutedEventArgs e)
         {
             Friend_Click(sender, e);
         }
+
         private void OpenChat(int chatId)
         {
             var chatView = new ChatView(chatId);
             var home = (HomeWindow)Application.Current.MainWindow;
-            home.NavigateTo(chatView);
+            home?.NavigateTo(chatView);
         }
+
+        
 
     }
 }

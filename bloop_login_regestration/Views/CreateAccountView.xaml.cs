@@ -32,9 +32,6 @@ namespace bloop_login_regestration.Views
             {
                 using var client = new HttpClient();
 
-                // passwordBox.Password is a SecureString (your custom BindablePasswordBox),
-                // convert it to plain text for sending (this is needed to POST to API).
-                // Warning: in production avoid keeping plain passwords in memory longer than necessary.
                 string plainPassword = new NetworkCredential(string.Empty, passwordBox.Password).Password;
 
                 var newUser = new
@@ -56,9 +53,18 @@ namespace bloop_login_regestration.Views
                     {
                         UserSession.CurrentUser = user;
 
-                        // Navigate to Welcome screen inside the MainWindow host
-                        var parent = Window.GetWindow(this) as MainWindow;
-                        parent?.NavigateTo(new WelcomeBloopView());
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            var home = new HomeWindow(user);
+
+                            // Load MainPageView right after registration
+                            home.NavigateTo(new MainPageView());
+
+                            home.Show();
+
+                            Application.Current.MainWindow.Close();
+                            Application.Current.MainWindow = home;
+                        });
                     }
                     else
                     {

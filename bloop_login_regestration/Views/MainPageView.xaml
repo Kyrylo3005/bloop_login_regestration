@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:bloop_login_regestration.Views"
+             xmlns:model="clr-namespace:bloop_login_regestration.Model"
              mc:Ignorable="d" 
              d:DesignHeight="1036" d:DesignWidth="1780">
     <Grid Background="#0C0F15">
@@ -259,6 +260,43 @@
                             </StackPanel>
                         </DockPanel>
                     </Button>
+
+
+                    <ItemsControl ItemsSource="{Binding Users}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Background="Transparent"
+                    BorderThickness="0"
+                    Padding="0"
+                    Margin="0,0,0,10"
+                    Cursor="Hand"
+                    HorizontalContentAlignment="Stretch"
+                    FocusVisualStyle="{x:Null}"
+                    Command="{Binding DataContext.OpenChatCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    CommandParameter="{Binding}">
+                                    <DockPanel LastChildFill="True">
+                                        <Grid Width="44" Height="44" Margin="0,0,8,0">
+                                            <Border CornerRadius="14"
+                                BorderBrush="#3A3F4A"
+                                BorderThickness="1">
+                                                <Border.Background>
+                                                    <ImageBrush ImageSource="/Images/avatar.png" Stretch="UniformToFill"/>
+                                                </Border.Background>
+                                            </Border>
+                                        </Grid>
+                                        <TextBlock Text="{Binding Login}"
+                               Foreground="#666F86"
+                               FontSize="14"
+                               VerticalAlignment="Center"/>
+                                    </DockPanel>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+
+
+
 
                 </StackPanel>
 

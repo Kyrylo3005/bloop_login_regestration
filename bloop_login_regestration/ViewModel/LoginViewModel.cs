@@ -1,8 +1,6 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Runtime.CompilerServices;
 using System.Security;
 using System.Threading.Tasks;
 using System.Windows;
@@ -105,7 +103,7 @@ namespace bloop_login_regestration.ViewModel
                         {
                             var home = new HomeWindow(user);
 
-                            // Load MainPageView right after login
+                            // Navigate to MainPageView as soon as login succeeds
                             home.NavigateTo(new MainPageView());
 
                             home.Show();
@@ -129,7 +127,6 @@ namespace bloop_login_regestration.ViewModel
                 ErrorMessage = "Connection error: " + ex.Message;
             }
         }
-
 
         private void NavigateToForgotPassword()
         {
